@@ -1,21 +1,21 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const cors = require('cors');  // Assurez-vous que cette ligne est présente
 
 const app = express();
 const port = 3000;
 
-// Importer les routes
-const formRoutes = require('./routes/formRoutes');
-
-// Middleware
+// Utilisation du middleware cors
 app.use(cors());
-app.use(bodyParser.json());
 
-// Utiliser les routes
-app.use('/api/forms', formRoutes);
+// Middleware pour parser les JSON
+app.use(express.json());
+
+// Point de terminaison pour l'inscription
+app.post('/api/users/signup', (req, res) => {
+  res.status(201).send('Utilisateur inscrit');
+});
 
 // Démarrer le serveur
-app.listen(port, () => {
-  console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
+app.listen(port, '127.0.0.1', () => {
+  console.log(`Serveur en écoute sur http://127.0.0.1:${port}`);
 });

@@ -1,10 +1,12 @@
-// routes/userRoutes.js
 const express = require('express');
-const { signUp, login } = require('../controllers/userController'); 
 const router = express.Router();
+const formController = require('../controllers/userController');
 
-// Définir les routes
-router.post('/signup', signUp);
-router.post('/login', login); 
+// Route pour l'inscription
+router.post('/signup', userController.signUp);
+
+// Route pour la connexion
+router.post('/login', userController.login);
 
 module.exports = router;
+
